@@ -251,8 +251,10 @@ public class Main {
         System.out.println("Name: " + names[assistantIndex] + " (" + ids[assistantIndex] + ")");
         System.out.println("Number of education credits: " + credits[assistantIndex]);
         System.out.println("Sessions:");
+        System.out.printf("%-12s %-11s %s%n", "Date", "Start-End", "Salary:");
         for (int i = 0; i < sessionCounts[assistantIndex]; i++) {
-            System.out.println(sessions[assistantIndex][i]);
+            String[] sessionParts = sessions[assistantIndex][i].split(" ");
+            System.out.printf("%-12s %-11s %s%n", sessionParts[0], sessionParts[1], sessionParts[2]);
         }
         System.out.println("Total number of sessions: " + sessionCounts[assistantIndex]);
         System.out.println("Total salary: " + totalSalaries[assistantIndex] + " kr");
