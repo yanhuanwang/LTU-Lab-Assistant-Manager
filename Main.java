@@ -165,12 +165,39 @@ public class Main {
             return;
         }
 
-        System.out.print("> Enter start time of the session (HH:MM): ");
-        String startTime = scanner.nextLine();
-        System.out.print("> Enter end time of the session (HH:MM): ");
-        String endTime = scanner.nextLine();
-        System.out.print("> Enter date of the session (YYYY-MM-DD): ");
-        String date = scanner.nextLine();
+        String startTime;
+        String endTime;
+        String date;
+
+        while (true) {
+            System.out.print("> Enter start time of the session (HH:MM): ");
+            startTime = scanner.nextLine();
+            if (isValidTime(startTime)) {
+                break;
+            } else {
+                System.out.println("Invalid time format. Please enter the time in HH:MM format.");
+            }
+        }
+
+        while (true) {
+            System.out.print("> Enter end time of the session (HH:MM): ");
+            endTime = scanner.nextLine();
+            if (isValidTime(endTime)) {
+                break;
+            } else {
+                System.out.println("Invalid time format. Please enter the time in HH:MM format.");
+            }
+        }
+
+        while (true) {
+            System.out.print("> Enter date of the session (YYYY-MM-DD): ");
+            date = scanner.nextLine();
+            if (isValidDate(date)) {
+                break;
+            } else {
+                System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+            }
+        }
 
         int startMinutes = timeToMinutes(startTime);
         int endMinutes = timeToMinutes(endTime);
@@ -281,4 +308,23 @@ public class Main {
         array[i] = array[j];
         array[j] = temp;
     }
+
+    // Method to validate time format (HH:MM)
+    static boolean isValidTime(String time) {
+        if (time.matches("([01]\\d|2[0-3]):[0-5]\\d")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Method to validate date format (YYYY-MM-DD)
+    static boolean isValidDate(String date) {
+        if (date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
